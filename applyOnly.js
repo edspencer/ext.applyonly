@@ -8,7 +8,7 @@
 Ext.applyOnly = function(receiver, sender, whitelist) {
   if (receiver && sender) {
     Ext.each(whitelist || [], function(item) {
-      if (sender[item]) receiver[item] = sender[item];
+      if (typeof sender[item] != 'undefined') receiver[item] = sender[item];
     }, this);
   };
   

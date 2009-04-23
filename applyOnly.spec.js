@@ -7,7 +7,7 @@ Screw.Unit(function() {
       closable: true
     };
     
-    var whitelist = ['height', 'width'];
+    var whitelist = ['height', 'width', 'toSave'];
     
     it("should update whitelisted properties", function() {
       var res = Ext.applyOnly(receiver(), sender, whitelist);
@@ -24,9 +24,10 @@ Screw.Unit(function() {
     });
     
     it("should not overwrite receiver properties if they are not present in the sender", function() {
-      var res = Ext.applyOnly(receiver(), {height: 200}, whitelist);
+      var res = Ext.applyOnly(receiver(), {height: 200, toSave: false}, whitelist);
       
       expect(res.width).to(equal, 100);
+      expect(res.toSave).to(equal, false);
     });
     
     /**
